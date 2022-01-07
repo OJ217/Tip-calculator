@@ -1,0 +1,246 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+
+$strong-cyan: hsl(172, 67%, 45%);
+$very-dark-cyan: hsl(183, 100%, 15%);
+$more-dark-grayish-cyan: hsl(186, 14%, 43%);
+$dark-grayish-cyan: hsl(184, 14%, 56%);
+$light-grayish-cyan: hsl(185, 41%, 84%);
+$more-light-grayish-cyan: hsl(189, 41%, 97%);
+$white: hsl(0, 0%, 100%);
+$error-message: hsl(13, 32%, 57%);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  // min-height: 1024px;
+  font-family: "Space Mono", monospace;
+  display: grid;
+  place-content: center;
+  background-color: $light-grayish-cyan;
+  div#root {
+    div.main-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 88px;
+      padding: 40px;
+      div.tip-calculator {
+        background-color: $white;
+        padding: 32px 48px;
+        border-radius: 24px;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        div.calculator-container {
+          display: flex;
+          flex-direction: column;
+          gap: 48px;
+          align-items: flex-start;
+          .input-container {
+            position: relative;
+            img {
+              position: absolute;
+              left: 20px;
+              top: 50%;
+              transform: translateY(-50%);
+            }
+          }
+          div {
+            width: 100%;
+            .info {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+          }
+          h3 {
+            font-size: 16px;
+            color: $more-dark-grayish-cyan;
+            margin-bottom: 12px;
+            &#error-message {
+              color: $error-message;
+            }
+          }
+          input {
+            border: none;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: $more-light-grayish-cyan;
+            width: 100%;
+            text-align: right;
+            padding: 16px 20px;
+            font-size: 24px;
+            font-family: inherit;
+            color: $very-dark-cyan;
+            font-weight: 700;
+            &.invalid {
+              outline-color: $error-message;
+            }
+            &::placeholder {
+              font-size: 24px;
+              color: $dark-grayish-cyan;
+              font-weight: 400;
+            }
+            &:focus {
+              outline-color: $strong-cyan !important;
+            }
+          }
+          .tip-percent {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            row-gap: 16px;
+            column-gap: 14px;
+            & > * {
+              width: 124px;
+              height: 48px;
+              border: none;
+              border-radius: 8px;
+              font-size: 24px;
+              font-family: inherit;
+              font-weight: 700;
+            }
+            .tipButton {
+              color: $white;
+              background-color: $very-dark-cyan;
+              &:hover {
+                background-color: $strong-cyan;
+                color: $very-dark-cyan;
+                transition: 0.5s all ease;
+                cursor: pointer;
+              }
+              &.active {
+                background-color: $strong-cyan !important;
+                color: $very-dark-cyan !important;
+              }
+            }
+            input {
+              padding: 16px;
+              &::placeholder {
+                font-weight: 700;
+                color: $more-dark-grayish-cyan;
+              }
+            }
+          }
+        }
+        .calculation-results {
+          background-color: $very-dark-cyan;
+          border-radius: 24px;
+          overflow: hidden;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: space-between;
+          padding: 60px 40px;
+          min-width: 410px;
+          h1 {
+            font-size: 54px;
+            color: $strong-cyan;
+          }
+          h3 {
+            color: $white;
+            font-size: 16px;
+          }
+          p {
+            color: $white;
+            opacity: 0.5;
+          }
+          .tip-container {
+            width: 100%;
+          }
+          .tip {
+            display: flex;
+            justify-content: space-between !important;
+            align-items: center;
+          }
+          .reset {
+            width: 100%;
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            border: none;
+            font-family: inherit;
+            text-transform: uppercase;
+            font-size: 18px;
+            font-weight: 700;
+            color: $very-dark-cyan;
+            background-color: $strong-cyan;
+            &:hover {
+              background-color: hsl(173, 61%, 77%) !important;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1030px) {
+  div.tip-calculator {
+    // padding: 30px !important;
+    grid-template-columns: 1fr !important;
+    button.reset {
+      margin-top: 40px;
+    }
+  }
+}
+
+@media only screen and (max-width: 570px) {
+  div.tip-calculator {
+    max-width: 500px !important;
+    width: auto !important;
+    .calculator-container {
+      h3 {
+        font-size: 12px !important;
+      }
+      input {
+        font-size: 18px !important;
+        &::placeholder {
+          font-size: 18px !important;
+        }
+      }
+      .tip-percent {
+        & > * {
+          font-size: 18px !important;
+        }
+      }
+    }
+    .calculation-results {
+      min-width: none !important;
+      h1 {
+        font-size: 36px !important;
+      }
+      h3 {
+        font-size: 12px !important;
+      }
+      .reset {
+        font-size: 12px !important;
+      }
+    }
+  }
+  .tip-percent {
+    grid-template-columns: 1fr 1fr !important;
+    & > * {
+      width: 100% !important;
+    }
+  }
+  .tip {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: unset !important;
+  }
+  .tip-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+  .custom-tip {
+    text-align: center !important;
+  }
+}
